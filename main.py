@@ -2,10 +2,9 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
-from kivy.core.window import Window
 
-# set window size
-Window.size = (300, 450)
+
+
 # load the string for design
 Builder.load_string("""
 <CalLayout>
@@ -25,18 +24,19 @@ Builder.load_string("""
             Button:
                 size_hint:(.2, .2)
                 font_size:32
-                text:"<-"
-                on_press:root.back()
-            Button:
-                size_hint:(.2, .2)
-                font_size:32
                 text:"C"
                 on_press:root.clear()
             Button:
                 size_hint:(.2, .2)
-                font_size:32
-                text:"%"
-                on_press:root.pressed('%')                
+                font_size:27
+                text:"TNGA"
+                on_press:root.new()
+
+            Button:
+                size_hint:(.2, .2)
+                font_size:27
+                text:"ZR"
+                on_press:root.new_zr()                
             Button:
                 size_hint:(.2, .2)
                 font_size:32
@@ -64,8 +64,8 @@ Builder.load_string("""
             Button:
                 size_hint:(.2, .2)
                 font_size:32
-                text:"X"
-                on_press:root.pressed('*')
+                text:"-"
+                on_press:root.pressed('-')
             # third row
             Button:
                 size_hint:(.2, .2)
@@ -88,8 +88,8 @@ Builder.load_string("""
             Button:
                 size_hint:(.2, .2)
                 font_size:32
-                text:"-"
-                on_press:root.pressed('-')
+                text:"+"
+                on_press:root.pressed('+')
             # fourth row
             Button:
                 size_hint:(.2, .2)
@@ -112,38 +112,41 @@ Builder.load_string("""
             Button:
                 size_hint:(.2, .2)
                 font_size:32
-                text:"+"
-                on_press:root.pressed('+')
+                text:"="
+                on_press:root.answer()
             # fifth row
-            Button:
-                size_hint:(.2, .2)
-                font_size:32
-                text:"x[sup]n[/sup]"
-                background_color:(157/255,157/255, 157/255, 1)
-                markup:True
-                on_press:root.pressed('**')
+
             Button:
                 size_hint:(.2, .2)
                 font_size:32
                 text:"0"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(0)
-            Button:
-                size_hint:(.2, .2)
-                font_size:32
-                text:"."
-                background_color:(157/255,157/255, 157/255, 1)
-                on_press:root.pressed('.')
-            Button:
-                size_hint:(.2, .2)
-                font_size:32
-                text:"="
-                on_press:root.answer()
+
+
 """)
 
 
 # Create a class for calculator layout
 class CalLayout(Widget):
+
+    def new(self):
+        expression = self.ids.input.text
+        expression = int(expression)
+        expression = expression * 14
+        while expression % 4 != 0:
+            expression += 1
+        self.ids.input.text = str(expression)
+
+    def new_zr(self):
+        expression = self.ids.input.text
+        expression = int(expression)
+        expression = expression * 16
+        while expression % 4 != 0:
+            expression += 1
+        self.ids.input.text = str(expression)
+
+
     # function to clear text field
     def clear(self):
         self.ids.input.text = ""
