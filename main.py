@@ -15,113 +15,134 @@ Builder.load_string("""
             id:input
             text:"0"
             halign:"right"
-            font_size:60
+            font_size:120
             size_hint:(1, .20)
         GridLayout:
             cols:4
             rows:5
             # first row
+            
             Button:
                 size_hint:(.2, .2)
-                font_size:32
-                text:"C"
-                on_press:root.clear()
+                font_size:60
+                text:"Pokr"
+                on_press:root.new_mini()    
+            
             Button:
                 size_hint:(.2, .2)
-                font_size:27
+                font_size:60
                 text:"TNGA"
                 on_press:root.new()
 
             Button:
                 size_hint:(.2, .2)
-                font_size:27
+                font_size:60
                 text:"ZR"
                 on_press:root.new_zr()                
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"/"
                 on_press:root.pressed('/')
             # second row
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"7"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(7)
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"8"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(8)
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"9"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(9)
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"-"
                 on_press:root.pressed('-')
             # third row
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"4"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(4)
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"5"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(5)
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"6"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(6)
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"+"
                 on_press:root.pressed('+')
             # fourth row
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"1"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(1)
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"2"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(2)
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"3"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(3)
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"="
                 on_press:root.answer()
             # fifth row
 
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"0"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(0)
+            
+            Button:
+                size_hint:(.2, .2)
+                font_size:60
+                text:""
+                background_color:(157/255,157/255, 157/255, 1)
+                
+            
+            Button:
+                size_hint:(.2, .2)
+                font_size:60
+                text:""
+                background_color:(157/255,157/255, 157/255, 1)
+            
+            Button:
+                size_hint:(.2, .2)
+                font_size:60
+                text:"C"
+                on_press:root.clear() 
 
 
 """)
@@ -129,6 +150,14 @@ Builder.load_string("""
 
 # Create a class for calculator layout
 class CalLayout(Widget):
+
+    def new_mini(self):
+        expression = self.ids.input.text
+        self.ids.input.text = str(eval(expression))
+        expression = self.ids.input.text
+        expression = int(expression)
+        expression = expression * 60
+        self.ids.input.text = str(expression)
 
     def new(self):
         expression = self.ids.input.text
