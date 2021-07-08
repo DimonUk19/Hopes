@@ -3,8 +3,6 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
-
-
 # load the string for design
 Builder.load_string("""
 <CalLayout>
@@ -21,23 +19,23 @@ Builder.load_string("""
             cols:4
             rows:5
             # first row
-            
+
             Button:
                 size_hint:(.2, .2)
                 font_size:60
                 text:"Pokr"
                 on_press:root.new_mini()    
-            
+
             Button:
                 size_hint:(.2, .2)
                 font_size:60
-                text:"TNGA"
+                text:"TNGA/ZR"
                 on_press:root.new()
 
             Button:
                 size_hint:(.2, .2)
                 font_size:60
-                text:"ZR"
+                text:"KR/386"
                 on_press:root.new_zr()                
             Button:
                 size_hint:(.2, .2)
@@ -124,20 +122,20 @@ Builder.load_string("""
                 text:"0"
                 background_color:(157/255,157/255, 157/255, 1)
                 on_press:root.pressed(0)
-            
+
             Button:
                 size_hint:(.2, .2)
                 font_size:60
                 text:""
                 background_color:(157/255,157/255, 157/255, 1)
-                
-            
+
+
             Button:
                 size_hint:(.2, .2)
                 font_size:60
                 text:""
                 background_color:(157/255,157/255, 157/255, 1)
-            
+
             Button:
                 size_hint:(.2, .2)
                 font_size:60
@@ -162,19 +160,34 @@ class CalLayout(Widget):
     def new(self):
         expression = self.ids.input.text
         expression = int(expression)
-        expression = expression * 14
-        while expression % 4 != 0:
-            expression += 1
-        self.ids.input.text = str(expression)
+        expression = expression * 16.3
+        if expression % 4 <= 1.5:
+            expression = round(expression)
+            expression -= 2
+            while expression % 4 != 0:
+                expression += 1
+            self.ids.input.text = str(expression)
+        else:
+            expression = round(expression)
+            while expression % 4 != 0:
+                expression += 1
+            self.ids.input.text = str(expression)
 
     def new_zr(self):
         expression = self.ids.input.text
         expression = int(expression)
-        expression = expression * 16
-        while expression % 4 != 0:
-            expression += 1
-        self.ids.input.text = str(expression)
-
+        expression = expression * 16.3
+        if expression % 4 <= 1.5:
+            expression = round(expression)
+            expression -= 2
+            while expression % 4 != 0:
+                expression += 1
+            self.ids.input.text = str(expression)
+        else:
+            expression = round(expression)
+            while expression % 4 != 0:
+                expression += 1
+            self.ids.input.text = str(expression)
 
     # function to clear text field
     def clear(self):
