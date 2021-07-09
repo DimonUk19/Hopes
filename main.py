@@ -35,7 +35,7 @@ Builder.load_string("""
             Button:
                 size_hint:(.2, .2)
                 font_size:60
-                text:"KR/386"
+                text:"KR/384"
                 on_press:root.new_zr()                
             Button:
                 size_hint:(.2, .2)
@@ -126,8 +126,9 @@ Builder.load_string("""
             Button:
                 size_hint:(.2, .2)
                 font_size:60
-                text:""
+                text:"."
                 background_color:(157/255,157/255, 157/255, 1)
+                on_press:root.pressed('.')
 
 
             Button:
@@ -159,6 +160,8 @@ class CalLayout(Widget):
 
     def new(self):
         expression = self.ids.input.text
+        self.ids.input.text = str(eval(expression))
+        expression = self.ids.input.text
         expression = int(expression)
         expression = expression * 16.3
         if expression % 4 <= 1.5:
@@ -174,6 +177,8 @@ class CalLayout(Widget):
             self.ids.input.text = str(expression)
 
     def new_zr(self):
+        expression = self.ids.input.text
+        self.ids.input.text = str(eval(expression))
         expression = self.ids.input.text
         expression = int(expression)
         expression = expression * 16.3
