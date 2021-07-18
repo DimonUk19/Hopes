@@ -43,7 +43,7 @@ requirements = python3,kivy==2.0.0
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/data/logo/unnamed.jpg
+presplash.filename = %(source.dir)s/data/logo/1512_oooo.plus.png
 
 # (str) Icon of the application
 icon.filename = %(source.dir)s/data/logo/1711_oooo.plus.png
