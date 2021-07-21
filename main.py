@@ -3,11 +3,6 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
-from kivy.lang import Builder
-from kivy.uix.boxlayout import BoxLayout
-from kivymd.app import MDApp
-from kivy.uix.label import Label
-
 # load the string for design
 Builder.load_string("""
 <CalLayout>
@@ -24,32 +19,56 @@ Builder.load_string("""
 
         GridLayout:
             cols:4
-            rows:6
+            rows:7
 
-            
             Button:
                 size_hint:(.2, .2)
                 font_size:60
                 id:namber
-                text:""
+                text:"save"
                 on_press:root.auth()    
 
             Button:
                 size_hint:(.2, .2)
                 font_size:60
-                text:"TNGA/ZR(1)"
-                on_press:root.new()
+                text:"Delete"
+                on_press:root.Delete()
 
             Button:
                 size_hint:(.2, .2)
                 font_size:60
-                text:"KR/384(1)"
-                on_press:root.new_zr()                
+                id:namber1
+                text:"save"
+                on_press:root.auth1() 
+                             
             Button:
                 size_hint:(.2, .2)
                 font_size:32
                 text:"<-"
                 on_press:root.back()
+            
+            Button:
+                size_hint:(.2, .2)
+                font_size:60
+                text:""
+                  
+
+            Button:
+                size_hint:(.2, .2)
+                font_size:60
+                text:"TNGA/ZR(1)"
+                on_press:root.new1()
+
+            Button:
+                size_hint:(.2, .2)
+                font_size:60
+                text:"KR/384(1)"
+                on_press:root.new_zr1()                
+            Button:
+                size_hint:(.2, .2)
+                font_size:32
+                text:"X"
+                on_press:root.pressed('*')
                 
             Button:
                 size_hint:(.2, .2)
@@ -183,8 +202,23 @@ Builder.load_string("""
 
 class CalLayout(Widget):
 
+    def Delete(self):
+        self.ids.namber.text = "save"
+        self.ids.namber1.text = "save"
+
+    def auth1(self):
+        if self.ids.namber.text == "save":
+            expression = self.ids.input.text
+            expression = int(expression)
+            self.ids.namber1.text = str(expression)
+        else:
+            expression = self.ids.namber1.text
+            expression = int(expression)
+            expression = str(self.ids.input.text) + str(self.ids.namber1.text)
+            self.ids.input.text = str(expression)
+
     def auth(self):
-        if self.ids.namber.text == "":
+        if self.ids.namber.text == "save":
             expression = self.ids.input.text
             expression = int(expression)
             self.ids.namber.text = str(expression)
@@ -195,12 +229,6 @@ class CalLayout(Widget):
             self.ids.input.text = str(expression)
 
 
-
-    def new_dit(self, DITAILS=int):
-        expression = self.ids.input.text
-        self.ids.input.text = str(expression)
-        self.ids.input.text = DITAILS
-
     def new_mini(self):
         expression = self.ids.input.text
         self.ids.input.text = str(eval(expression))
@@ -209,12 +237,48 @@ class CalLayout(Widget):
         expression = expression * 60
         self.ids.input.text = str(expression)
 
+    def new1(self):
+        expression = self.ids.input.text
+        self.ids.input.text = str(eval(expression))
+        expression = self.ids.input.text
+        expression = int(expression)
+        expression = expression * 9
+        if expression % 4 <= 1.5:
+            expression = round(expression)
+            expression -= 2
+            while expression % 4 != 0:
+                expression += 1
+            self.ids.input.text = str(expression)
+        else:
+            expression = round(expression)
+            while expression % 4 != 0:
+                expression += 1
+            self.ids.input.text = str(expression)
+
     def new(self):
         expression = self.ids.input.text
         self.ids.input.text = str(eval(expression))
         expression = self.ids.input.text
         expression = int(expression)
         expression = expression * 16.3
+        if expression % 4 <= 1.5:
+            expression = round(expression)
+            expression -= 2
+            while expression % 4 != 0:
+                expression += 1
+            self.ids.input.text = str(expression)
+        else:
+            expression = round(expression)
+            while expression % 4 != 0:
+                expression += 1
+            self.ids.input.text = str(expression)
+
+    def new_zr1(self):
+        expression = self.ids.input.text
+        self.ids.input.text = str(eval(expression))
+        expression = self.ids.input.text
+        expression = int(expression)
+        expression = expression * 9
         if expression % 4 <= 1.5:
             expression = round(expression)
             expression -= 2
