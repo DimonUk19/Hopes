@@ -3,6 +3,11 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
+from kivy.lang import Builder
+from kivy.uix.boxlayout import BoxLayout
+from kivymd.app import MDApp
+from kivy.uix.label import Label
+
 # load the string for design
 Builder.load_string("""
 <CalLayout>
@@ -11,15 +16,41 @@ Builder.load_string("""
         size: root.width, root.height
         TextInput:
             id:input
-            text:"0"
+            multiline: False
+            text:""
             halign:"right"
             font_size:120
             size_hint:(1, .20)
+
         GridLayout:
             cols:4
-            rows:5
-            # first row
+            rows:6
 
+            
+            Button:
+                size_hint:(.2, .2)
+                font_size:60
+                id:namber
+                text:""
+                on_press:root.auth()    
+
+            Button:
+                size_hint:(.2, .2)
+                font_size:60
+                text:"TNGA/ZR(1)"
+                on_press:root.new()
+
+            Button:
+                size_hint:(.2, .2)
+                font_size:60
+                text:"KR/384(1)"
+                on_press:root.new_zr()                
+            Button:
+                size_hint:(.2, .2)
+                font_size:32
+                text:"<-"
+                on_press:root.back()
+                
             Button:
                 size_hint:(.2, .2)
                 font_size:60
@@ -134,9 +165,10 @@ Builder.load_string("""
             Button:
                 size_hint:(.2, .2)
                 font_size:60
-                text:""
+                text:"1796"
                 background_color:(157/255,157/255, 157/255, 1)
-
+                on_press:root.pressed('1796')
+                
             Button:
                 size_hint:(.2, .2)
                 font_size:60
@@ -148,7 +180,26 @@ Builder.load_string("""
 
 
 # Create a class for calculator layout
+
 class CalLayout(Widget):
+
+    def auth(self):
+        if self.ids.namber.text == "":
+            expression = self.ids.input.text
+            expression = int(expression)
+            self.ids.namber.text = str(expression)
+        else:
+            expression = self.ids.namber.text
+            expression = int(expression)
+            expression = str(self.ids.input.text) + str(self.ids.namber.text)
+            self.ids.input.text = str(expression)
+
+
+
+    def new_dit(self, DITAILS=int):
+        expression = self.ids.input.text
+        self.ids.input.text = str(expression)
+        self.ids.input.text = DITAILS
 
     def new_mini(self):
         expression = self.ids.input.text
@@ -217,7 +268,7 @@ class CalLayout(Widget):
         # if text filed expression contains
         # 0 then first set the field to empty and
         # display the button text pressed by user
-        if expression == "0":
+        if expression == "":
             self.ids.input.text = ""
             self.ids.input.text = f"{button}"
         else:
