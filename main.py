@@ -25,7 +25,7 @@ Builder.load_string("""
                 size_hint:(.2, .2)
                 font_size:60
                 id:namber
-                text:"save"
+                text:"save №1"
                 on_press:root.auth()    
 
             Button:
@@ -38,12 +38,12 @@ Builder.load_string("""
                 size_hint:(.2, .2)
                 font_size:60
                 id:namber1
-                text:"save"
+                text:"save №2"
                 on_press:root.auth1() 
                              
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"<-"
                 on_press:root.back()
             
@@ -66,7 +66,7 @@ Builder.load_string("""
                 on_press:root.new_zr1()                
             Button:
                 size_hint:(.2, .2)
-                font_size:32
+                font_size:60
                 text:"X"
                 on_press:root.pressed('*')
                 
@@ -184,9 +184,9 @@ Builder.load_string("""
             Button:
                 size_hint:(.2, .2)
                 font_size:60
-                text:"1796"
+                text:"1792"
                 background_color:(157/255,157/255, 157/255, 1)
-                on_press:root.pressed('1796')
+                on_press:root.pressed('1792')
                 
             Button:
                 size_hint:(.2, .2)
@@ -203,11 +203,11 @@ Builder.load_string("""
 class CalLayout(Widget):
 
     def Delete(self):
-        self.ids.namber.text = "save"
-        self.ids.namber1.text = "save"
+        self.ids.namber.text = "save №1"
+        self.ids.namber1.text = "save №2"
 
     def auth1(self):
-        if self.ids.namber.text == "save":
+        if self.ids.namber1.text == "save №2":
             expression = self.ids.input.text
             expression = int(expression)
             self.ids.namber1.text = str(expression)
@@ -218,7 +218,7 @@ class CalLayout(Widget):
             self.ids.input.text = str(expression)
 
     def auth(self):
-        if self.ids.namber.text == "save":
+        if self.ids.namber.text == "save №1":
             expression = self.ids.input.text
             expression = int(expression)
             self.ids.namber.text = str(expression)
@@ -231,83 +231,98 @@ class CalLayout(Widget):
 
     def new_mini(self):
         expression = self.ids.input.text
-        self.ids.input.text = str(eval(expression))
-        expression = self.ids.input.text
-        expression = int(expression)
-        expression = expression * 60
-        self.ids.input.text = str(expression)
+        try:
+            self.ids.input.text = str(eval(expression))
+            expression = self.ids.input.text
+            expression = int(expression)
+            expression = expression * 60
+            self.ids.input.text = str(expression)
+        except:
+            self.ids.input.text = "Error"
 
     def new1(self):
         expression = self.ids.input.text
-        self.ids.input.text = str(eval(expression))
-        expression = self.ids.input.text
-        expression = int(expression)
-        expression = expression * 9
-        if expression % 4 <= 1.5:
-            expression = round(expression)
-            expression -= 2
-            while expression % 4 != 0:
-                expression += 1
-            self.ids.input.text = str(expression)
-        else:
-            expression = round(expression)
-            while expression % 4 != 0:
-                expression += 1
-            self.ids.input.text = str(expression)
+        try:
+            self.ids.input.text = str(eval(expression))
+            expression = self.ids.input.text
+            expression = int(expression)
+            expression = expression * 9
+            if expression % 4 <= 1.5:
+                expression = round(expression)
+                expression -= 2
+                while expression % 4 != 0:
+                    expression += 1
+                self.ids.input.text = str(expression)
+            else:
+                expression = round(expression)
+                while expression % 4 != 0:
+                    expression += 1
+                self.ids.input.text = str(expression)
+        except:
+            self.ids.input.text = "Error"
 
     def new(self):
         expression = self.ids.input.text
-        self.ids.input.text = str(eval(expression))
-        expression = self.ids.input.text
-        expression = int(expression)
-        expression = expression * 16.3
-        if expression % 4 <= 1.5:
-            expression = round(expression)
-            expression -= 2
-            while expression % 4 != 0:
-                expression += 1
-            self.ids.input.text = str(expression)
-        else:
-            expression = round(expression)
-            while expression % 4 != 0:
-                expression += 1
-            self.ids.input.text = str(expression)
+        try:
+            self.ids.input.text = str(eval(expression))
+            expression = self.ids.input.text
+            expression = int(expression)
+            expression = expression * 16.3
+            if expression % 4 <= 1.5:
+                expression = round(expression)
+                expression -= 2
+                while expression % 4 != 0:
+                    expression += 1
+                self.ids.input.text = str(expression)
+            else:
+                expression = round(expression)
+                while expression % 4 != 0:
+                    expression += 1
+                self.ids.input.text = str(expression)
+        except:
+            self.ids.input.text = "Error"
 
     def new_zr1(self):
         expression = self.ids.input.text
-        self.ids.input.text = str(eval(expression))
-        expression = self.ids.input.text
-        expression = int(expression)
-        expression = expression * 9
-        if expression % 4 <= 1.5:
-            expression = round(expression)
-            expression -= 2
-            while expression % 4 != 0:
-                expression += 1
-            self.ids.input.text = str(expression)
-        else:
-            expression = round(expression)
-            while expression % 4 != 0:
-                expression += 1
-            self.ids.input.text = str(expression)
+        try:
+            self.ids.input.text = str(eval(expression))
+            expression = self.ids.input.text
+            expression = int(expression)
+            expression = expression * 9
+            if expression % 4 <= 1.5:
+                expression = round(expression)
+                expression -= 2
+                while expression % 4 != 0:
+                    expression += 1
+                self.ids.input.text = str(expression)
+            else:
+                expression = round(expression)
+                while expression % 4 != 0:
+                    expression += 1
+                self.ids.input.text = str(expression)
+        except:
+            self.ids.input.text = "Error"
 
     def new_zr(self):
         expression = self.ids.input.text
-        self.ids.input.text = str(eval(expression))
-        expression = self.ids.input.text
-        expression = int(expression)
-        expression = expression * 16.3
-        if expression % 4 <= 1.5:
-            expression = round(expression)
-            expression -= 2
-            while expression % 4 != 0:
-                expression += 1
-            self.ids.input.text = str(expression)
-        else:
-            expression = round(expression)
-            while expression % 4 != 0:
-                expression += 1
-            self.ids.input.text = str(expression)
+        try:
+            self.ids.input.text = str(eval(expression))
+            expression = self.ids.input.text
+            expression = int(expression)
+            expression = expression * 16.3
+            if expression % 4 <= 1.5:
+                expression = round(expression)
+                expression -= 2
+                while expression % 4 != 0:
+                    expression += 1
+                self.ids.input.text = str(expression)
+            else:
+                expression = round(expression)
+                while expression % 4 != 0:
+                    expression += 1
+                self.ids.input.text = str(expression)
+        except:
+            self.ids.input.text = "Error"
 
     # function to clear text field
     def clear(self):
