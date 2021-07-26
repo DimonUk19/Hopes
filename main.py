@@ -209,8 +209,11 @@ class CalLayout(Widget):
     def auth1(self):
         if self.ids.namber1.text == "save №2":
             expression = self.ids.input.text
-            expression = int(expression)
-            self.ids.namber1.text = str(expression)
+            try:
+                expression = int(expression)
+                self.ids.namber1.text = str(expression)
+            except:
+                self.ids.input.text = "Error"
         else:
             expression = self.ids.namber1.text
             expression = int(expression)
@@ -220,8 +223,11 @@ class CalLayout(Widget):
     def auth(self):
         if self.ids.namber.text == "save №1":
             expression = self.ids.input.text
-            expression = int(expression)
-            self.ids.namber.text = str(expression)
+            try:
+                expression = int(expression)
+                self.ids.namber.text = str(expression)
+            except:
+                self.ids.input.text = "Error"
         else:
             expression = self.ids.namber.text
             expression = int(expression)
